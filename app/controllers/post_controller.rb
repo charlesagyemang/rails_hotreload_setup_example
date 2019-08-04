@@ -1,4 +1,6 @@
 class PostController < ApplicationController
+
+  before_action :set_post, only: [:show, :edit, :update, :delete]
   def index
     @posts = Post.all.order("created_at DESC")
   end
@@ -9,7 +11,6 @@ class PostController < ApplicationController
 
   def show
     #code
-    @post = Post.find(params[:id])
   end
 
   def create
@@ -23,14 +24,12 @@ class PostController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
     #code
   end
 
 
   def update
     #code
-    @post = Post.find(params[:id])
     if @post.update(post_params)
       redirect_to @post, notice: "Post Was Updated Successfully"
     else
@@ -39,8 +38,6 @@ class PostController < ApplicationController
   end
 
   def delete
-    #code
-    @post = Post.find(params[:id])
     if @post.destroy
       redirect_to posts_path, notice: "Deleted Successfully"
     else
@@ -48,6 +45,11 @@ class PostController < ApplicationController
     end
   end
   private
+    def set_post
+      #code
+      @post = Post.find(params[:id])
+    end
+
     def post_params
       #code
       params.require(:post).permit(:title, :body)
