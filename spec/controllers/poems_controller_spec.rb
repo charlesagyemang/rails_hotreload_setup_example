@@ -33,13 +33,14 @@ RSpec.describe PoemsController, type: :controller do
     end
   end
 
-  # describe "GET #show" do
-  #   it "returns a success response" do
-  #     poem = Poem.create! valid_attributes
-  #     get :show, params: {id: poem.to_param}, session: valid_session
-  #     expect(response).to be_successful
-  #   end
-  # end
+  describe "GET #show" do
+    it "returns a success response" do
+      poem = Poem.create! valid_attributes
+      get :show, params: {id: poem.to_param}, session: valid_session
+      puts response
+      expect(response).to be_successful
+    end
+  end
   #
   # describe "GET #new" do
   #   it "returns a success response" do
